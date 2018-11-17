@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="button" value="出去浪"  @click="lang">
+		<input type="button" value="不许去" @click="stop">
+
+		<h4>{{msg}}</h4>
+	</div>
+
+	<script>
+		var vm = new Vue({
+			el:'#app',
+			data:{
+				msg:"刘希晗要出去浪!~嗨起来~~~",
+				intervalId:null,
+			},
+			methods:{
+				lang(){
+					if(this.intervalId!=null)return;
+					this.intervalId=setInterval(() => {
+						var start = this.msg.substring(0,1)
+						var last = this.msg.substring(1)
+						this.msg = last + start
+						console.log(this.msg)
+					},400)
+					console.log(this.msg)
+				},
+				stop(){
+					clearInterval(this.intervalId);
+					this.intervalId=null
+				}
+			}
+
+		})
+	</script>
+</body>
+</html>
